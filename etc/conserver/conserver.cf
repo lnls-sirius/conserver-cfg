@@ -1,0 +1,168 @@
+# The character '&' in logfile names are substituted with the console
+# name.
+
+# Console groups
+default m-ia-20radiag01-1     { master localhost; }
+default m-ia-20radiag01-2     { master localhost; }
+default m-ia-20radiag02-1     { master localhost; }
+default m-ia-20radiag02-2     { master localhost; }
+default m-ia-14radiag03       { master localhost; }
+default m-ia-18radiag04       { master localhost; }
+default m-ia-16rabbb          { master localhost; }
+default m-ca-ratim            { master localhost; }
+
+# Users/Groups
+group grp-adm       { users lucas.russo, dig, root; }
+group grp-dig       { users grp-adm; }
+
+# List of clients we allow
+access * {
+    admin       grp-adm;
+    allowed     127.0.0.1 10.128.0.0/16 10.0.38.0/24 10.0.18.0/24;
+}
+
+# General configs
+config localhost {
+    autocomplete true;
+    defaultaccess rejected;
+    initdelay 60;
+    logfile /var/log/conserver/conserver/conserver.log;
+    passwdfile /etc/conserver/conserver.passwd;
+    primaryport 782;
+    redirect yes;
+    reinitcheck 1;
+    secondaryport 0;
+    sslrequired false;
+    unifiedlog /var/log/conserver/unified.log;
+}
+
+default dig-def {
+    logfile /var/log/conserver/dig/&.log;
+    rw grp-dig;
+}
+
+default message {
+    motd \
+            Welcome to console server;
+}
+
+default def {
+    include message;
+    timestamp "1lb";
+}
+
+#default * {
+#	logfile /var/log/conserver/&.log;
+#	timestamp "";
+#    rw *;
+#}
+
+#include /etc/conserver/conserver.local.cf
+
+default h-ia-20radiag01-1-sioc     { host ia-20radiag01-co-iocsrv-1.lnls-sirius.com.br; }
+default h-ia-20radiag01-2-sioc     { host ia-20radiag01-co-iocsrv-2.lnls-sirius.com.br; }
+default h-ia-20radiag02-1-sioc     { host ia-20radiag02-co-iocsrv-1.lnls-sirius.com.br; }
+default h-ia-20radiag02-2-sioc     { host ia-20radiag02-co-iocsrv-2.lnls-sirius.com.br; }
+default h-ia-14radiag03-sioc       { host ia-14radiag03-co-iocsrv.lnls-sirius.com.br; }
+default h-ia-18radiag04-sioc       { host ia-18radiag04-co-iocsrv.lnls-sirius.com.br; }
+default h-ia-16rabbb-sioc          { host ia-16rabbb-co-iocsrv.lnls-sirius.com.br; }
+default h-ca-ratim-sioc            { host ia-caratim-co-iocsrv.lnls-sirius.com.br; }
+
+# Defaults for console types
+default ia-20radiag01-1 {
+    include m-ia-20radiag01-1;
+    include def;
+    include dig-def;
+    include h-ia-20radiag01-1-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+default ia-20radiag01-2 {
+    include m-ia-20radiag01-2;
+    include def;
+    include dig-def;
+    include h-ia-20radiag01-2-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+default ia-20radiag02-1 {
+    include m-ia-20radiag02-1;
+    include def;
+    include dig-def;
+    include h-ia-20radiag02-1-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+default ia-20radiag02-2 {
+    include m-ia-20radiag02-2;
+    include def;
+    include dig-def;
+    include h-ia-20radiag02-2-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+default ia-14radiag03 {
+    include m-ia-14radiag03;
+    include def;
+    include dig-def;
+    include h-ia-14radiag03-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+default ia-18radiag04 {
+    include m-ia-18radiag04;
+    include def;
+    include dig-def;
+    include h-ia-18radiag04-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+default ia-16rabbb {
+    include m-ia-16rabbb;
+    include def;
+    include dig-def;
+    include h-ia-16rabbb-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+default ca-ratim {
+    include m-ca-ratim;
+    include def;
+    include dig-def;
+    include h-ca-ratim-sioc;
+    type exec;
+    execrunas dig;
+    exec /usr/bin/ssh -o StrictHostKeyChecking=no -t server@Y;
+    execsubst Y=hs;
+}
+
+# list of consoles we serve
+console ia-20radiag01-1-sioc   { include ia-20radiag01-1; }
+console ia-20radiag01-2-sioc   { include ia-20radiag01-2; }
+console ia-20radiag02-1-sioc   { include ia-20radiag02-1; }
+console ia-20radiag02-2-sioc   { include ia-20radiag02-2; }
+console ia-14radiag03-sioc     { include ia-14radiag03; }
+console ia-18radiag04-sioc     { include ia-18radiag04; }
+console ia-16rabbb-sioc        { include ia-16rabbb; }
+console ca-ratim-sioc          { include ca-ratim; }
