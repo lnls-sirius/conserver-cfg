@@ -162,7 +162,5 @@ console ia-20radiag01-1-sioc   { include ia-20radiag01-1; }
 console ia-20radiag01-2-sioc   { include ia-20radiag01-2; }
 console ia-20radiag02-1-sioc   { include ia-20radiag02-1; }
 console ia-20radiag02-2-sioc   { include ia-20radiag02-2; }
-console ia-14radiag03-sioc     { include ia-14radiag03; }
-console ia-18radiag04-sioc     { include ia-18radiag04; }
-console ia-16rabbb-sioc        { include ia-16rabbb; }
-console ca-ratim-sioc          { include ca-ratim; }
+#console ia-14radiag03-sioc     { include ia-14radiag03; }
+#console ia-18radiag04-sioc     { include ia-18radiag04; }
