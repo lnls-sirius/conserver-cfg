@@ -26,7 +26,7 @@ config localhost {
     autocomplete true;
     defaultaccess rejected;
     initdelay 60;
-    logfile /var/log/conserver/conserver/conserver.log;
+    logfile /var/log/conserver/conserver.log;
     passwdfile /etc/conserver/conserver.passwd;
     primaryport 782;
     redirect yes;
@@ -37,7 +37,7 @@ config localhost {
 }
 
 default dig-def {
-    logfile /var/log/conserver/dig/&.log;
+    logfile /var/log/conserver/&.log;
     rw grp-dig;
 }
 
