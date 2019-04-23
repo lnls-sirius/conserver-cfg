@@ -28,7 +28,7 @@ config localhost {
     initdelay 60;
     logfile /var/log/conserver/conserver.log;
     passwdfile /etc/conserver/conserver.passwd;
-    primaryport 782;
+    primaryport 3109;
     redirect yes;
     reinitcheck 1;
     secondaryport 0;
