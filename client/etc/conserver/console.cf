@@ -1,6 +1,6 @@
 # default config for console
 config * {
-	master      10.0.38.37;
+    master      10.0.38.37;
     username    dig;
-	port        782;
+    port        782;
 }
